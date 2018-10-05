@@ -1,4 +1,4 @@
-= Rust als sichere Sprache für systemnahe und parallele Software
+= Rust als sichere Programmiersprache
 :revealjs_theme: solarized
 // [...] other document attributes
 :source-highlighter: highlightjs

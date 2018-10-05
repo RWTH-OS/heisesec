@@ -1,3 +1,3 @@
-# Rust for parallel and concurrent software
+# Rust as secure programming language
 
-Talk at parallel 2018 (https://www.parallelcon.de)
+Talk at heise devsec 2018 (https://www.heise-devsec.de)
