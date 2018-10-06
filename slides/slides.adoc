@@ -299,6 +299,13 @@ fn main() {
 thread 'main' panicked at 'index out of bounds: the len is 5 but the index is 5', src/main.rs:4:33
 ----
 
+=== Unsichere Codeabschnitte
+
+* *unsafe* Codeabschnitte können diese Techniken aushebeln
+* Um mögliche Stackangriffe zu vermeiden, werden wachsende Elemete nicht auf dem Stack gelegt
+
+image::images/stack.png[width=500]
+
 == Ein einfaches Beispiel: Pi
 
 image::images/pi.png[width=600]
@@ -710,10 +717,10 @@ Pi hat natürlich kein Problem mit Lastbalanzierung.
 == Zusammenfassung
 
 * Ownership / Borrowing ist für einen _old school_ Entwickler gewönnungsbedürftig
+** Die Laufzeitumgebung vermeidet Pufferüberläufe
 * _Fearless concurency_
 ** Der Compiler verhindert _race conditions_
 ** std hat Threads, Mutex, RW Lock und Arc
-** Rayon und Crossbeam vereinfachen viele Aufgaben
 
 [NOTE.speaker]
 --
