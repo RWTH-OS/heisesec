@@ -24,8 +24,8 @@
 
 == Hinweise zum Vortrag
 
-* Folien: https://stlankes.github.io/rust_parallel2018/
-* Beispiele: https://github.com/stlankes/rust_parallel2018
+* Folien: https://stlankes.github.io/heise_devsec2018/
+* Beispiele: https://github.com/stlankes/heise_devsec2018
 * Einstieg: https://www.rust-lang.org
 * Playground: https://play.rust-lang.org
 * Tutorial: https://rustbyexample.com
@@ -51,7 +51,7 @@ fn main() {
     // das compilierte Binary gestartet wird.
 
     // Ausgabe auf stdout
-    println!("Hello para//el 2018!");
+    println!("Hello devsec 2018!");
 }
 ----
 
@@ -146,7 +146,7 @@ std::vector<std::string>* x = nullptr;
 {
 	std::vector<std::string> z;
 
-	z.push_back("Hello para//el 2018!");
+	z.push_back("Hello devsec 2018!");
 	x = &z;
 }
 
@@ -169,7 +169,7 @@ std::cout << (*x)[0] << std::endl;
 let x;
 
 {
-	let z = vec!("Hello para//el 2018!");
+	let z = vec!("Hello devsec 2018!");
 
 	x = &z;
 }
@@ -219,7 +219,7 @@ error[E0597]: `z` does not live long enough
 .Sind die geschweiften Klammern nötig?
 [source, Rust]
 ----
-let mut x = vec!("Hello para//el 2018!");
+let mut x = vec!("Hello devsec 2018!");
 
 {
 	let z = &mut x;
@@ -643,94 +643,6 @@ for _ in 0..nthreads {
 [NOTE.speaker]
 --
 Pi hat natürlich kein Problem mit Lastbalanzierung.
---
-
-== Rayon: Parallelism in Rust
-
-* https://github.com/rayon-rs/rayon
-* Unterstützt parallele Berechungen auf Basis von Task-Parallelität und _Work Stealing_
-** Ähnlich zu Cilk (daher auch der Name)
-* Biete aber auch Daten-Parallelität über Iteratoren
-
-[NOTE.speaker]
---
-rayon == Kunstseide
-silk == Seide
-Eingesetzt in firefox
-Automatische Lastbalanzierung
---
-
-=== Iteratoren in Rust
-
-* Serielle Pi-Berechnung mit Hilfe von Iteratoren
-
-[source, Rust]
-----
-let step = 1.0 / NUM_STEPS as f64;
-
-let sum: f64 = (0..NUM_STEPS).into_iter()
-    .map(|i| {
-        let x = (i as f64 + 0.5) * step;
-        4.0 / (1.0 + x * x)
-    }).sum();
-
-println!("Pi: {}", sum * (1.0 / NUM_STEPS as f64));
-----
-
-[NOTE.speaker]
---
---
-
-=== Pi-Berechnung mit Rayon
-
-* Parallele Pi-Berechnung mit Rayon
-* Lohnt sich nur bei größeren Aufgaben
-
-[source, Rust]
-----
-let step = 1.0 / NUM_STEPS as f64;
-
-let sum: f64 = (0..NUM_STEPS).into_par_iter()
-    .map(|i| {
-        let x = (i as f64 + 0.5) * step;
-        4.0 / (1.0 + x * x)
-    }).sum();
-
-println!("Pi: {}", sum * (1.0 / NUM_STEPS as f64));
-----
-
-[NOTE.speaker]
---
---
-
-== Das Laplace-Problem
-
-* Wärme-Verteilung innerhalb einer Platte
-* Gelöst mit _Jacobi Over Relaxation_ (JOR)
-
-image::images/laplace.png[width=600]
-
-[NOTE.speaker]
---
-wechsel zu Stefan
---
-
-=== Lösung mit Hilfe von Tasks
-
-image::images/laplace_task.png[width=600]
-
-[NOTE.speaker]
---
-Gemessen auf Intel Haswell EP mit 10 Kernen
---
-
-=== Lösung durch eine // For-Schleife
-
-image::images/laplace_for.png[width=600]
-
-[NOTE.speaker]
---
-Sprung bei 10 Threads verschwindet mit Threadpool
 --
 
 // == Weitere Hinweise
