@@ -242,6 +242,63 @@ error[E0502]: cannot borrow `v` as immutable because it is also borrowed as muta
    |                    ^ immutable borrow occurs here
 --
 
+== Vermeidung von Pufferüberläufe
+
+* Klassisches Sicherheitsproblem
+* Erkennt Rust den ungültigen Zugriff?
+
+[source, Rust]
+----
+fn main() {
+	let array: [i32; 5] = [1, 2, 3, 4, 5];
+
+	let x = array[6];
+}
+----
+
+=== Fehlermeldung des Compilers
+
+* Zur Compilezeit werden einfache Fehler erkannt
+
+[source, Rust]
+----
+error: index out of bounds: the len is 5 but the index is 6
+ --> src/main.rs:6:10
+  |
+6 |     let x = array[6];
+  |             ^^^^^^^^
+  |
+  = note: #[deny(const_err)] on by default
+----
+
+=== Werden Laufzeitfehler abgefangen?
+
+[source, Rust]
+----
+fn main() {
+	let array: [i32; 5] = [1, 2, 3, 4, 5];
+
+	for i in 0..6 {
+		println!("array[{}] = {}", i, array[i]);
+	}
+}
+----
+
+=== Boundary Checks zur Laufzeit
+
+[source, Rust]
+----
+fn main() {
+	let array: [i32; 5] = [1, 2, 3, 4, 5];
+
+	for i in 0..6 {
+		println!("array[{}] = {}", i, array[i]);
+	}
+}
+
+thread 'main' panicked at 'index out of bounds: the len is 5 but the index is 5', src/main.rs:4:33
+----
+
 == Ein einfaches Beispiel: Pi
 
 image::images/pi.png[width=600]
