@@ -29,3 +29,11 @@ In Rust, doing that results in a compile-time error.
 ---
 * invalid computational states are avoided as much as possible by using Algebraic Sum Types, since these allow the compiler to enforce that you are always in a valid computational state, rather than relying on the programmer to do a good job of maintaining staten
 ---
+
+
+Links:
+https://www.reddit.com/r/rust/comments/5y3cxb/how_many_security_exploits_would_rust_prevent/
+https://www.lucidchart.com/techblog/2015/08/31/the-worst-mistake-of-computer-science/
+https://medium.com/journey-to-rust/algebraic-data-types-a6408cd36c98
+https://doc.rust-lang.org/std/option/
+https://tonyarcieri.com/a-quick-tour-of-rusts-type-system-part-1-sum-types-a-k-a-tagged-unions
