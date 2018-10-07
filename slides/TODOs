@@ -1,0 +1,31 @@
+Fuzzer in https://github.com/rust-fuzz
+* cargo-fuzz
+* AFL
+* honggfuzz-rs
+https://medium.com/@shnatsel/how-ive-found-vulnerability-in-a-popular-rust-crate-and-you-can-too-3db081a67fb
+
+
+
+* preventing pointer-aliasing both at a language-design-level and at runtime by bounds checking
+* Dangling pointers are prevented by safe Rust
+* buffer overflows should be prevented
+* race conditions should basically be prevented
+* Algebraic Sum Types, Use an Option<T>-style value instead of the NULL-based design from ALGOL 60. Tony Hoare called this the billion dollar mistake. (elaboration on why it's so bad).
+* Use length+pointer strings like Rust and all of the other popular higher-level languages of the time rather than following the assembly language convention of using NULL-terminated strings. (the linked article lists some more non-obvious downsides to the decision.)
+* Avoid conflating arrays and pointers in the syntax just because that's what they are under the hood.
+
+Preventing exploits is a thankless job
+
+---
+Another common attack vector is format string vulnerabilities, caused by using a string supplied by the attacker as the format string in printf. The string formatting macros (format!, println! etc.) in Rust help prevent this class of attacks as well, since the format string must be a string literal.
+---
+
+---
+I'm very careful to handle all of my Option<T> and Result<T,E> values appropriately, but, when I work in C or C++, I do occasionally overlook something that can return NULL despite trying my hardest.
+
+In Rust, doing that results in a compile-time error.
+---
+
+---
+* invalid computational states are avoided as much as possible by using Algebraic Sum Types, since these allow the compiler to enforce that you are always in a valid computational state, rather than relying on the programmer to do a good job of maintaining staten
+---
