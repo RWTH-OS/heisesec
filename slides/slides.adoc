@@ -88,7 +88,7 @@ image::images/rust.png[width=150]
 === Vorteile von Rust
 
 * C/C++ ähnliche Performance
-** http://benchmarksgame.alioth.debian.org/u64q/compare.php?lang=rust&lang2=gpp[Link zu Vergleichsmessungen]
+** https://benchmarksgame-team.pages.debian.net/benchmarksgame/faster/rust.html[Link zu Vergleichsmessungen]
 * Compilerbasierte Überprüfungen welche z.B.
 ** Speichersicherheit (ohne Garbage Collection) garantieren
 ** Data Races verhindern
@@ -227,6 +227,7 @@ let mut x = vec!("Hello devsec 2018!");
 }
 
 println!("{}", x[0]);
+
 ----
 
 [NOTE.speaker]
@@ -241,6 +242,13 @@ error[E0502]: cannot borrow `v` as immutable because it is also borrowed as muta
 94 |     println!("{}", v[0]);
    |                    ^ immutable borrow occurs here
 --
+
+=== Vorteile von Ownership & Borrowing
+
+* Keine `dangling pointer`
+* Kein `pointer aliasing`
+
+=> Zwei typische Fehlerklassen die in C/C++ auftreten können sind in Rust nicht möglich.
 
 == Vermeidung von Pufferüberläufe
 
