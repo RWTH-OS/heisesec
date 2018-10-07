@@ -1,5 +1,5 @@
 default: .bundle slides.adoc
-	bundle exec asciidoctor-revealjs -a revealjsdir=reveal.js-3.6.0/ slides.adoc
+	bundle exec asciidoctor-revealjs -a revealjsdir=reveal.js-3.7.0/ slides.adoc
 
 .bundle: Gemfile
 	bundle config --local github.https true
