@@ -11,6 +11,7 @@ https://medium.com/@shnatsel/how-ive-found-vulnerability-in-a-popular-rust-crate
 * buffer overflows should be prevented
 * race conditions should basically be prevented
 * Algebraic Sum Types, Use an Option<T>-style value instead of the NULL-based design from ALGOL 60. Tony Hoare called this the billion dollar mistake. (elaboration on why it's so bad).
+
 * Use length+pointer strings like Rust and all of the other popular higher-level languages of the time rather than following the assembly language convention of using NULL-terminated strings. (the linked article lists some more non-obvious downsides to the decision.)
 * Avoid conflating arrays and pointers in the syntax just because that's what they are under the hood.
 

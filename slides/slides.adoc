@@ -314,6 +314,44 @@ thread 'main' panicked at 'index out of bounds: the len is 5 but the index is 5'
 
 image::images/stack.png[width=500]
 
+== Kein 'billion dollar mistake'
+
+* Frei nach Tony Hoare (Erfinder von ALGOL)
+* NULL is ein Wert, der kein Wert ist.
+* Rust kennt null, aber nur für 'raw, unsafe' Pointer.
+
+[NOTE.speaker]
+--
+Erfunden in ALGOL, kopiert von fast allen.
+Erzählen wieso NULL schlecht ist:
+* Benötigt manuellen check (den man vergisst)
+--
+
+=== Sum Types
+
+* Auch tagged unions.
+* Rust benutzt Option<T> für optionale Werte und
+* Result<T, E> für Funktionsaufrufe die Fehler liefern können.
+
+[source, Rust]
+----
+match checked::div(x, y) {
+    Err(why) => panic!("{:?}", why),
+    Ok(ratio) => ratio,
+}
+----
+
+[NOTE.speaker]
+--
+Keine Exceptions ins Rust.
+--
+
+== Strings
+
+* Nicht NULL terminiert, sondern Start + Länge.
+* Format Strings (für zB println!) müssen Compilezeit Konstanten sein.
+** Compiler überprüft Typen.
+
 == Ein einfaches Beispiel: Pi
 
 image::images/pi.png[width=600]
@@ -716,6 +754,14 @@ for _ in 0..nthreads {
 --
 Pi hat natürlich kein Problem mit Lastbalanzierung.
 --
+
+== Rust Infrastrukur
+
+* Standartisiertes Unitest Framework
+* Fuzzer sind verfügbar und können leicht integriert werden
+** cargo-fuzz
+** honggfuzz-rs
+
 
 // == Weitere Hinweise
 //
