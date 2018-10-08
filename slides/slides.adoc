@@ -48,7 +48,7 @@ Rust ist eine (relativ) neue Programmiersprache für systemnahe Software
 ----
 fn main() {
     // Die Statements werden ausgeführt sobald
-    // das compilierte Binary gestartet wird.
+    // das compilierte Binary gestartet wird
 
     // Ausgabe auf stdout
     println!("Hello devsec 2018!");
@@ -136,6 +136,11 @@ fn main() {
 [NOTE.speaker]
 --
 --
+
+== Safe / unsafe Rust
+
+* Die folgenden Vorteile gelten grundsätzlich nur für safe Rust
+* In unsafe lässt sich jeder Fehler aus C auch in Rust nachbauen
 
 == Ownership & Borrowing
 
@@ -307,35 +312,33 @@ fn main() {
 thread 'main' panicked at 'index out of bounds: the len is 5 but the index is 5', src/main.rs:4:33
 ----
 
-=== Unsichere Codeabschnitte
+== Stack Angriffe
 
-* *unsafe* Codeabschnitte können diese Techniken aushebeln
 * Um mögliche Stackangriffe zu vermeiden, werden wachsende Elemete nicht auf dem Stack gelegt
 
 image::images/stack.png[width=500]
 
-== Kein 'billion dollar mistake'
+== Kein "billion dollar mistake"
 
 * Frei nach Tony Hoare (Erfinder von ALGOL)
-* NULL is ein Wert, der kein Wert ist.
-* Rust kennt null, aber nur für 'raw, unsafe' Pointer.
+* `NULL` is ein Wert, der kein Wert ist
+* Rust kennt `std::ptr::null`, aber nur für "raw, unsafe" Pointer
 
 [NOTE.speaker]
 --
 Erfunden in ALGOL, kopiert von fast allen.
 Erzählen wieso NULL schlecht ist:
-* Benötigt manuellen check (den man vergisst)
+* Benötigt manuelle Checks (den man natürlich vergisst)
 --
 
-=== Sum Types
+=== Sum Types (a.k.a. tagged unions)
 
-* Auch tagged unions.
-* Rust benutzt Option<T> für optionale Werte und
-* Result<T, E> für Funktionsaufrufe die Fehler liefern können.
+* Rust benutzt `Option<T>` für optionale Werte und
+* `Result<T, E>` für Funktionsaufrufe die Fehler liefern können
 
 [source, Rust]
 ----
-match checked::div(x, y) {
+match checked_div(x, y) {
     Err(why) => panic!("{:?}", why),
     Ok(ratio) => ratio,
 }
@@ -343,13 +346,16 @@ match checked::div(x, y) {
 
 [NOTE.speaker]
 --
-Keine Exceptions ins Rust.
+Keine Exceptions in Rust.
+Zugriff auf den Wert von Result ist nur möglich wenn auch der Fehler überprüft wird.
+
+Checked integer division. Computes self / rhs, returning None if rhs == 0 or the division results in overflow.
 --
 
 == Strings
 
-* Nicht NULL terminiert, sondern Start + Länge.
-* Format Strings (für zB println!) müssen Compilezeit Konstanten sein.
+* Nicht `null` terminiert, sondern bestehen aus Start + Länge.
+* Format Strings (z.B. für `println!`) müssen compilezeit Konstanten sein.
 ** Compiler überprüft Typen.
 
 == Ein einfaches Beispiel: Pi
@@ -598,24 +604,24 @@ fn lock(&self) -> LockResult<MutexGuard<T>>
 --
 --
 
-=== Atomare Variablen
+//=== Atomare Variablen
 
-* Atomare Variablen (`std::sync::atomic::*`)
-** Schwierig zu benutzen
-** Folgt dem C11 Speichermodell mit Acquire/Release Semantik
+//* Atomare Variablen (`std::sync::atomic::*`)
+//** Schwierig zu benutzen
+//** Folgt dem C11 Speichermodell mit Acquire/Release Semantik
 
-[source, Rust]
-----
-let reference_count: AtomicUsize = 0;
-reference_count.fetch_add(1, Ordering::Relaxed);
-----
+//[source, Rust]
+//----
+//let reference_count: AtomicUsize = 0;
+//reference_count.fetch_add(1, Ordering::Relaxed);
+//----
 
-*Grundsätzlich:* Der trait `std::marker::Sync` muß für gemeinsame veränderliche Variablen implementiert werden
+//*Grundsätzlich:* Der trait `std::marker::Sync` muß für gemeinsame veränderliche Variablen implementiert werden
 
-[NOTE.speaker]
---
-T is Sync if &T is Send: if there is no possibility of undefined behavior (including data races) when passing &T references between threads.
---
+//[NOTE.speaker]
+//--
+//T is Sync if &T is Send: if there is no possibility of undefined behavior (including data races) when passing &T references between threads.
+//--
 
 == Parallele Berechnung
 
@@ -685,80 +691,80 @@ for t in threads {
 --
 --
 
-=== Berechnung mit Kanälen
+//=== Berechnung mit Kanälen
 
-* Ergebnisse durch Kanäle zusammenführen
-** Analogie zu *Communicating Sequential Processes* (CSP) und *Coroutines*
+//* Ergebnisse durch Kanäle zusammenführen
+//** Analogie zu *Communicating Sequential Processes* (CSP) und *Coroutines*
 
-[source, Rust]
-----
-fn term(start: u64, end: u64) -> f64
-{
-    let step = 1.0 / NUM_STEPS as f64;
-    let mut sum = 0.0;
+//[source, Rust]
+//----
+//fn term(start: u64, end: u64) -> f64
+//{
+//    let step = 1.0 / NUM_STEPS as f64;
+//    let mut sum = 0.0;
 
-    for i in start..end {
-        let x = (i as f64 + 0.5) * step;
-        sum += 4.0 / (1.0 + x * x);
-    }
+//    for i in start..end {
+//        let x = (i as f64 + 0.5) * step;
+//        sum += 4.0 / (1.0 + x * x);
+//    }
 
-    sum
-}
-----
+//    sum
+//}
+//----
 
-[NOTE.speaker]
---
---
+//[NOTE.speaker]
+//--
+//--
 
-=== Berechnung mit Kanälen
+//=== Berechnung mit Kanälen
 
-* Teilergebnisse berechnen und versenden
+//* Teilergebnisse berechnen und versenden
 
-[source, Rust]
-----
-let (tx, rx) = mpsc::channel();
+//[source, Rust]
+//----
+//let (tx, rx) = mpsc::channel();
 
-for id in 0..nthreads {
-    let thread_tx = tx.clone();
-    let start = (NUM_STEPS / nthreads as u64) * id;
-    let end = (NUM_STEPS / nthreads as u64) * (id+1);
+//for id in 0..nthreads {
+//    let thread_tx = tx.clone();
+//    let start = (NUM_STEPS / nthreads as u64) * id;
+//    let end = (NUM_STEPS / nthreads as u64) * (id+1);
 
-    thread::spawn(move || {
-        let partial_sum = term(start, end);
-        thread_tx.send(partial_sum).unwrap();
-    });
-};
-----
+//    thread::spawn(move || {
+//        let partial_sum = term(start, end);
+//        thread_tx.send(partial_sum).unwrap();
+//    });
+//};
+//----
 
-[NOTE.speaker]
---
---
+//[NOTE.speaker]
+//--
+//--
 
-=== Berechnung mit Kanälen
+//=== Berechnung mit Kanälen
 
-* Ergebnisse empfangen und aufaddieren
+//* Ergebnisse empfangen und aufaddieren
 
-[source, Rust]
-----
-let mut sum = 0.0;
+//[source, Rust]
+//----
+//let mut sum = 0.0;
 
-for _ in 0..nthreads {
-    sum = sum + rx.recv().unwrap();
-}
-----
+//for _ in 0..nthreads {
+//    sum = sum + rx.recv().unwrap();
+//}
+//----
 
-* Diese Lösung skaliert wie gewünscht
-* Wie sieht es mit Lastbalanzierung aus?
+//* Diese Lösung skaliert wie gewünscht
+//* Wie sieht es mit Lastbalanzierung aus?
 
-[NOTE.speaker]
---
-Pi hat natürlich kein Problem mit Lastbalanzierung.
---
+//[NOTE.speaker]
+//--
+//Pi hat natürlich kein Problem mit Lastbalanzierung.
+//--
 
 == Rust Infrastrukur
 
 * Standartisiertes Unitest Framework
-* Fuzzer sind verfügbar und können leicht integriert werden
+* Fuzzer sind verfügbar und können leicht integriert werden:
 ** cargo-fuzz
 ** honggfuzz-rs
 
@@ -771,11 +777,9 @@ Pi hat natürlich kein Problem mit Lastbalanzierung.
 == Zusammenfassung
 
 * Ownership / Borrowing ist für einen _old school_ Entwickler gewönnungsbedürftig
-** Die Laufzeitumgebung vermeidet Pufferüberläufe
-* _Fearless concurency_
-** Der Compiler verhindert _race conditions_
-** std hat Threads, Mutex, RW Lock und Arc
+* Rust verhindert einige typische Fehlerklassen, z.B. Pufferüberläufe, _race conditions_
 
+Preventing exploits is a thankless job
 [NOTE.speaker]
 --
 --
