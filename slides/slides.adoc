@@ -333,7 +333,7 @@ Erzählen wieso NULL schlecht ist:
 
 === Sum Types (a.k.a. tagged unions)
 
-* Rust benutzt `Option<T>` für optionale Werte und
+* Rust benutzt `Option<T>` für optionale Werte
 * `Result<T, E>` für Funktionsaufrufe die Fehler liefern können
 
 [source, Rust]
