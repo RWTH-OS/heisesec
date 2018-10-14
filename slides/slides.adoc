@@ -139,7 +139,7 @@ fn main() {
 
 === Safe / unsafe Rust
 
-* Die folgenden Vorteile gelten grundsätzlich nur für `safe Rust
+* Die folgenden Vorteile gelten grundsätzlich nur für `safe` Rust
 * In `unsafe` lässt sich jeder Fehler aus C auch in Rust nachbauen
 
 == Ownership & Borrowing
