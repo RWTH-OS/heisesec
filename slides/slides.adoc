@@ -1,4 +1,4 @@
-= Rust als sichere Programmiersprache
+= Rust als sichere Programmier- sprache
 :revealjs_theme: solarized
 // [...] other document attributes
 :source-highlighter: highlightjs
@@ -311,12 +311,6 @@ fn main() {
 
 thread 'main' panicked at 'index out of bounds: the len is 5 but the index is 5', src/main.rs:4:33
 ----
-
-== Stack Angriffe
-
-* Um mögliche Stackangriffe zu vermeiden, werden wachsende Elemete nicht auf dem Stack gelegt
-
-image::images/stack.png[width=500]
 
 == Kein "billion dollar mistake"
 
