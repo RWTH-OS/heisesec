@@ -139,7 +139,7 @@ fn main() {
 
 === Safe / unsafe Rust
 
-* Die folgenden Vorteile gelten grundsätzlich nur für `safe Rust
+* Die folgenden Vorteile gelten grundsätzlich nur für `safe` Rust
 * In `unsafe` lässt sich jeder Fehler aus C auch in Rust nachbauen
 
 == Ownership & Borrowing
@@ -327,7 +327,7 @@ Erzählen wieso NULL schlecht ist:
 
 === Sum Types (a.k.a. tagged unions)
 
-* Rust benutzt `Option<T>` für optionale Werte und
+* Rust benutzt `Option<T>` für optionale Werte
 * `Result<T, E>` für Funktionsaufrufe die Fehler liefern können
 
 [source, Rust]
