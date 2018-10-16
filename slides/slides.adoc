@@ -752,76 +752,6 @@ for t in threads {
 --
 --
 
-//=== Berechnung mit Kanälen
-
-//* Ergebnisse durch Kanäle zusammenführen
-//** Analogie zu *Communicating Sequential Processes* (CSP) und *Coroutines*
-
-//[source, Rust]
-//----
-//fn term(start: u64, end: u64) -> f64
-//{
-//    let step = 1.0 / NUM_STEPS as f64;
-//    let mut sum = 0.0;
-
-//    for i in start..end {
-//        let x = (i as f64 + 0.5) * step;
-//        sum += 4.0 / (1.0 + x * x);
-//    }
-
-//    sum
-//}
-//----
-
-//[NOTE.speaker]
-//--
-//--
-
-//=== Berechnung mit Kanälen
-
-//* Teilergebnisse berechnen und versenden
-
-//[source, Rust]
-//----
-//let (tx, rx) = mpsc::channel();
-
-//for id in 0..nthreads {
-//    let thread_tx = tx.clone();
-//    let start = (NUM_STEPS / nthreads as u64) * id;
-//    let end = (NUM_STEPS / nthreads as u64) * (id+1);
-
-//    thread::spawn(move || {
-//        let partial_sum = term(start, end);
-//        thread_tx.send(partial_sum).unwrap();
-//    });
-//};
-//----
-
-//[NOTE.speaker]
-//--
-//--
-
-//=== Berechnung mit Kanälen
-
-//* Ergebnisse empfangen und aufaddieren
-
-//[source, Rust]
-//----
-//let mut sum = 0.0;
-
-//for _ in 0..nthreads {
-//    sum = sum + rx.recv().unwrap();
-//}
-//----
-
-//* Diese Lösung skaliert wie gewünscht
-//* Wie sieht es mit Lastbalanzierung aus?
-
-//[NOTE.speaker]
-//--
-//Pi hat natürlich kein Problem mit Lastbalanzierung.
-//--
-
 == Rust Infrastrukur
 
 * Standartisiertes Unitest Framework
@@ -829,11 +759,9 @@ for t in threads {
 ** cargo-fuzz
 ** honggfuzz-rs
 
-
-// == Weitere Hinweise
-//
-// Mal schauen ob wir das hier brauchen
-// *  [T]::split_at_mut() oder [T]::chunks() um gemeinsame Datenstrukturen aufzuteilen für den borrow checker
+[NOTE.speaker]
+--
+--
 
 == Zusammenfassung
 
