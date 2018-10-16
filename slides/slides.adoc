@@ -427,7 +427,6 @@ image::images/pi.png[width=600]
 
 [NOTE.speaker]
 --
-Wechsel zu Stefan
 --
 
 === Pi-Berechnung in C++
@@ -474,6 +473,7 @@ println!("Pi: {}", sum * step);
 
 [NOTE.speaker]
 --
+wechsel Jens
 --
 
 == Parallele Berechnung
@@ -499,8 +499,6 @@ std::thread t([&](int start, int end){
 
 [NOTE.speaker]
 --
-wechsel Jens
-
 Im Code schleife über tid und join weggelassen
 --
 
@@ -667,26 +665,8 @@ fn lock(&self) -> LockResult<MutexGuard<T>>
 
 [NOTE.speaker]
 --
+wechsel zu Jens
 --
-
-//=== Atomare Variablen
-
-//* Atomare Variablen (`std::sync::atomic::*`)
-//** Schwierig zu benutzen
-//** Folgt dem C11 Speichermodell mit Acquire/Release Semantik
-
-//[source, Rust]
-//----
-//let reference_count: AtomicUsize = 0;
-//reference_count.fetch_add(1, Ordering::Relaxed);
-//----
-
-//*Grundsätzlich:* Der trait `std::marker::Sync` muß für gemeinsame veränderliche Variablen implementiert werden
-
-//[NOTE.speaker]
-//--
-//T is Sync if &T is Send: if there is no possibility of undefined behavior (including data races) when passing &T references between threads.
-//--
 
 == Parallele Berechnung
 
@@ -710,7 +690,6 @@ let threads: Vec<_> = (0..nthreads).map(|tid| {
 
 [NOTE.speaker]
 --
-wechsel zu Jens
 --
 
 === Berechnung mit Teilergebnissen
