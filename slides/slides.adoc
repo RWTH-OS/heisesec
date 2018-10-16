@@ -756,10 +756,26 @@ for t in threads {
 --
 --
 
-== Rust Infrastrukur
+== Rust Infrastruktur
 
-* Standartisiertes Unitest Framework
-* Dokumentation Tests
+* Standardisiertes Framework zum Testen
+
+[source, Rust]
+----
+#[cfg(test)]
+mod ModuleName {
+    #[test]
+    fn it_works() {
+        assert_eq!(2 + 2, 4);
+    }
+}
+----
+
+* Durchführen der Tests: `cargo test`
+
+=== Rust Infrastruktur
+
+* Dokumentation der Tests
 * Fuzzer sind verfügbar und können leicht integriert werden:
 ** cargo-fuzz
 ** honggfuzz-rs
