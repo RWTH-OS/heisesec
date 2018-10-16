@@ -598,6 +598,7 @@ error: cannot assign to immutable captured outer variable
 
 [NOTE.speaker]
 --
+wechsel Stefan
 --
 
 == Schutz statischer Elemente
@@ -622,7 +623,6 @@ pub fn init() {
 
 [NOTE.speaker]
 --
-wechsel Stefan
 --
 
 === Zugriffsschutz mit Mutexen / RWLock
