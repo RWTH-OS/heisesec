@@ -340,7 +340,9 @@ Erzählen wieso NULL schlecht ist:
 * Benötigt manuelle Checks
 --
 
-== NULL
+=== NULL (i)
+
+Benötigt häufig Sonderbehandlung, z.B.
 
 [source, C]
 ----
@@ -354,14 +356,12 @@ char *c = 0;
 std::cout << *c << std::endl; // Laufzeitfehler
 ----
 
-?
-
 [NOTE.speaker]
 --
 C++.
 --
 
-== Mehr NULL
+=== NULL (ii)
 
 [source, java]
 ----
@@ -375,18 +375,16 @@ if (string.IsNullOrEmpty(str)) {
 }
 ----
 
-Hmm
-
 [NOTE.speaker]
 --
 Ist das die Lektion die es zu lernen gibt?
 Und überhaupt: Das soll man nicht aus versehen vergessen?
 --
 
-=== Strings (a.k.a. NULL 3)
+=== Strings -- NULL (iii)
 
 * https://queue.acm.org/detail.cfm?id=2010365[The Most Expensive One-byte Mistake]
-* Nicht `null` terminiert, sondern bestehen aus Start + Länge.
+* In Rust: Nicht `null` terminiert, sondern bestehen aus Start + Länge.
 * Format Strings (z.B. für `println!`) müssen compilezeit Konstanten sein.
 ** Compiler überprüft Typen.
 
