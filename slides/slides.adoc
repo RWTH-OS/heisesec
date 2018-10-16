@@ -135,12 +135,23 @@ fn main() {
 
 [NOTE.speaker]
 --
+Umgekehrt auch möglich.
+unsafe: Trust me, I know what I’m doing
+Man sollte safe API über unsafe haben.
+unsafe spannend für audit
 --
 
 === Safe / unsafe Rust
 
 * Die folgenden Vorteile gelten grundsätzlich nur für `safe` Rust
 * In `unsafe` lässt sich jeder Fehler aus C auch in Rust nachbauen
+
+[NOTE.speaker]
+--
+Mehr eine Art Disclaimer.
+Auch in unsafe gibt es manche checks.
+Bsp: Ich kann range checks haben in unsafe. Aber ich benötige unsafe wenn ich keine will.
+--
 
 == Ownership & Borrowing
 
@@ -320,10 +331,55 @@ thread 'main' panicked at 'index out of bounds: the len is 5 but the index is 5'
 
 [NOTE.speaker]
 --
-Erfunden in ALGOL, kopiert von fast allen.
+Erfunden in ALGOL W., kopiert von fast allen.
+"absolutely safe, with checking performed automatically by the compiler"
 Erzählen wieso NULL schlecht ist:
 * Benötigt manuelle Checks (den man natürlich vergisst)
 --
+
+== NULL
+
+[source, C]
+----
+char *c = 123; // Compilerfehler
+std::cout << *c << std::endl;
+----
+
+[source, C]
+----
+char *c = 0;
+std::cout << *c << std::endl; // Laufzeitfehler
+----
+
+?
+
+[NOTE.speaker]
+--
+--
+
+== Mehr NULL
+
+[source, java]
+----
+if (str == null || str.equals("")) {
+}
+----
+
+[source, csharp]
+----
+if (string.IsNullOrEmpty(str)) {
+}
+----
+
+Hmm
+
+[NOTE.speaker]
+--
+Ist das die Lektion die es zu lernen gibt?
+Und überhaupt: Das soll man nicht aus versehen vergessen?
+--
+
+
 
 === Sum Types (a.k.a. tagged unions)
 
@@ -351,6 +407,9 @@ Checked integer division. Computes self / rhs, returning None if rhs == 0 or the
 * Nicht `null` terminiert, sondern bestehen aus Start + Länge.
 * Format Strings (z.B. für `println!`) müssen compilezeit Konstanten sein.
 ** Compiler überprüft Typen.
+[NOTE.speaker]
+--
+--
 
 == Ein einfaches Beispiel: Pi
 
