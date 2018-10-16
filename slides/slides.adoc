@@ -755,12 +755,16 @@ for t in threads {
 == Rust Infrastrukur
 
 * Standartisiertes Unitest Framework
+* Dokumentation Tests
 * Fuzzer sind verfügbar und können leicht integriert werden:
 ** cargo-fuzz
 ** honggfuzz-rs
 
 [NOTE.speaker]
 --
+2. Code in documentation wird compiliert und als test benutzt.
+cargo-fuzz benutzt libFuzzer (LLVM)
+honggfuzz-rs wird von Google maintained
 --
 
 == Zusammenfassung
