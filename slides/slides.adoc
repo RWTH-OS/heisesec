@@ -762,7 +762,7 @@ for t in threads {
 
 [NOTE.speaker]
 --
-2. Code in documentation wird compiliert und als test benutzt.
+Code in documentation wird compiliert und als test benutzt.
 cargo-fuzz benutzt libFuzzer (LLVM)
 honggfuzz-rs wird von Google maintained
 --
