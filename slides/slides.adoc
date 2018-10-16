@@ -331,6 +331,8 @@ thread 'main' panicked at 'index out of bounds: the len is 5 but the index is 5'
 
 [NOTE.speaker]
 --
+Wechsel zu Jens
+
 Erfunden in ALGOL W., kopiert von fast allen.
 "absolutely safe, with checking performed automatically by the compiler"
 Erzählen wieso NULL schlecht ist:
@@ -425,6 +427,7 @@ image::images/pi.png[width=600]
 
 [NOTE.speaker]
 --
+Wechsel zu Stefan
 --
 
 === Pi-Berechnung in C++
@@ -497,6 +500,7 @@ std::thread t([&](int start, int end){
 [NOTE.speaker]
 --
 wechsel Jens
+
 Im Code schleife über tid und join weggelassen
 --
 
@@ -598,7 +602,6 @@ error: cannot assign to immutable captured outer variable
 
 [NOTE.speaker]
 --
-wechsel Stefan
 --
 
 == Schutz statischer Elemente
@@ -623,6 +626,7 @@ pub fn init() {
 
 [NOTE.speaker]
 --
+wechsel Stefan
 --
 
 === Zugriffsschutz mit Mutexen / RWLock
