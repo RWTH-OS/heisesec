@@ -334,7 +334,8 @@ thread 'main' panicked at 'index out of bounds: the len is 5 but the index is 5'
 Erfunden in ALGOL W., kopiert von fast allen.
 "absolutely safe, with checking performed automatically by the compiler"
 Erzählen wieso NULL schlecht ist:
-* Benötigt manuelle Checks (den man natürlich vergisst)
+* Sonderfälle
+* Benötigt manuelle Checks
 --
 
 == NULL
@@ -355,6 +356,7 @@ std::cout << *c << std::endl; // Laufzeitfehler
 
 [NOTE.speaker]
 --
+C++.
 --
 
 == Mehr NULL
@@ -379,6 +381,19 @@ Ist das die Lektion die es zu lernen gibt?
 Und überhaupt: Das soll man nicht aus versehen vergessen?
 --
 
+=== Strings (a.k.a. NULL 3)
+
+* https://queue.acm.org/detail.cfm?id=2010365[The Most Expensive One-byte Mistake]
+* Nicht `null` terminiert, sondern bestehen aus Start + Länge.
+* Format Strings (z.B. für `println!`) müssen compilezeit Konstanten sein.
+** Compiler überprüft Typen.
+
+[NOTE.speaker]
+--
+array größen berechnung
+memcpy kompliziert
+Sentinel values sollten nicht der default sein.
+--
 
 
 === Sum Types (a.k.a. tagged unions)
@@ -400,15 +415,8 @@ Keine Exceptions in Rust.
 Zugriff auf den Wert von Result ist nur möglich wenn auch der Fehler überprüft wird.
 
 Checked integer division. Computes self / rhs, returning None if rhs == 0 or the division results in overflow.
---
 
-== Strings
-
-* Nicht `null` terminiert, sondern bestehen aus Start + Länge.
-* Format Strings (z.B. für `println!`) müssen compilezeit Konstanten sein.
-** Compiler überprüft Typen.
-[NOTE.speaker]
---
+Wechsel zu Stefan.
 --
 
 == Ein einfaches Beispiel: Pi
