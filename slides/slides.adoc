@@ -398,15 +398,22 @@ Sentinel values sollten nicht der default sein.
 
 === Sum Types (a.k.a. tagged unions)
 
-* Rust benutzt `Option<T>` für optionale Werte
-* `Result<T, E>` für Funktionsaufrufe die Fehler liefern können
-
+.Rust benutzt `Option<T>` für optionale Werte
 [source, Rust]
 ----
-match checked_div(x, y) {
-    Err(why) => panic!("{:?}", why),
-    Ok(ratio) => ratio,
+let rest = match checked_div(x, y) {
+	None => panic!("Unable to divide numbers"),
+	Some(ratio) => ratio
 }
+----
+
+.`Result<T, E>` für Funktionsaufrufe die Fehler liefern können
+[source, Rust]
+----
+let mut file = match File::create("my_best_friends.txt") {
+	Err(e) => panic!("Unable to create file {}", e),
+	Ok(f) => f,
+};
 ----
 
 [NOTE.speaker]
