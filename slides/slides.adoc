@@ -384,7 +384,7 @@ Und überhaupt: Das soll man nicht aus versehen vergessen?
 === Strings -- NULL (iii)
 
 * https://queue.acm.org/detail.cfm?id=2010365[The Most Expensive One-byte Mistake]
-* In Rust: Nicht `null` terminiert, sondern bestehen aus Start + Länge.
+* In Rust: nicht `null` terminiert, sondern bestehen aus Start + Länge.
 * Format Strings (z.B. für `println!`) müssen compilezeit Konstanten sein.
 ** Compiler überprüft Typen.
 
