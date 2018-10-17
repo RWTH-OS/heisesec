@@ -135,10 +135,7 @@ std::cout &lt;&lt; *c &lt;&lt; std::endl; // Laufzeitfehler</code></pre></div></
 Und überhaupt: Das soll man nicht aus versehen vergessen?</p></div></aside></section><section id="stringsnull_iii"><h2>Strings&#8201;&#8212;&#8201;NULL (iii)</h2><div class="ulist"><ul><li><p><a href="https://queue.acm.org/detail.cfm?id=2010365">The Most Expensive One-byte Mistake</a></p></li><li><p>In Rust: nicht <code>null</code> terminiert, sondern bestehen aus Start + Länge.</p></li><li><p>Format Strings (z.B. für <code>println!</code>) müssen compilezeit Konstanten sein.</p><div class="ulist"><ul><li><p>Compiler überprüft Typen.</p></li></ul></div></li></ul></div>
 <aside class="notes"><div class="paragraph"><p>array größen berechnung
 memcpy kompliziert
-Sentinel values sollten nicht der default sein.</p></div></aside></section><section id="sum_types_a_k_a_tagged_unions"><h2>Sum Types (a.k.a. tagged unions)</h2><div class="listingblock"><div class="title">Rust benutzt <code>Option&lt;T&gt;</code> für optionale Werte</div><div class="content"><pre class="highlight"><code data-noescape class="Rust language-Rust">let x = ToBigInt::to_bigint(&amp;4).unwrap();
-let y = ToBigInt::to_bigint(&amp;1).unwrap();
-
-match x.checked_div(&amp;y) {
+Sentinel values sollten nicht der default sein.</p></div></aside></section><section id="sum_types_a_k_a_tagged_unions"><h2>Sum Types (a.k.a. tagged unions)</h2><div class="listingblock"><div class="title">Rust benutzt <code>Option&lt;T&gt;</code> für optionale Werte</div><div class="content"><pre class="highlight"><code data-noescape class="Rust language-Rust">match 128u32.checked_div(2) {
 	None =&gt; panic!("Unable to divide numbers"),
 	Some(ratio) =&gt; println!("Result {}", ratio)
 };</code></pre></div></div>
