@@ -401,10 +401,13 @@ Sentinel values sollten nicht der default sein.
 .Rust benutzt `Option<T>` für optionale Werte
 [source, Rust]
 ----
-let rest = match checked_div(x, y) {
+let x = ToBigInt::to_bigint(&4).unwrap();
+let y = ToBigInt::to_bigint(&1).unwrap();
+
+match x.checked_div(&y) {
 	None => panic!("Unable to divide numbers"),
-	Some(ratio) => ratio
-}
+	Some(ratio) => println!("Result {}", ratio)
+};
 ----
 
 .`Result<T, E>` für Funktionsaufrufe die Fehler liefern können
