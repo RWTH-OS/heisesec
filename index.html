@@ -89,7 +89,7 @@ error[E0502]: cannot borrow <code>v</code> as immutable because it is also borro
    |                      - mutable borrow occurs here
 &#8230;&#8203;
 94 |     println!("{}", v[0]);
-   |                    ^ immutable borrow occurs here</p></div></aside></section><section id="vorteile_von_ownership_borrowing"><h2>Vorteile von Ownership &amp; Borrowing</h2><div class="ulist"><ul><li><p>Keine <code>dangling pointer</code></p></li><li><p>Kein <code>pointer aliasing</code></p></li></ul></div>
+   |                    ^ immutable borrow occurs here</p></div></aside></section><section id="vorteile_von_ownership_borrowing"><h2>Vorteile von Ownership &amp; Borrowing</h2><div class="ulist"><ul><li><p>Keine <code>dangling pointer</code></p></li><li><p>Kein <code>pointer aliasing</code> für veränderbare Referenzen</p></li></ul></div>
 <div class="paragraph"><p>&#8658; Zwei typische Fehlerklassen die in C/C++ auftreten können sind in Rust nicht möglich.</p></div></section></section>
 <section><section id="vermeidung_von_pufferberlufe"><h2>Vermeidung von Pufferüberläufe</h2><div class="ulist"><ul><li><p>Klassisches Sicherheitsproblem</p></li><li><p>Erkennt Rust den ungültigen Zugriff?</p></li></ul></div><div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape class="Rust language-Rust">fn main() {
 	let array: [i32; 5] = [1, 2, 3, 4, 5];
