@@ -262,7 +262,7 @@ error[E0502]: cannot borrow `v` as immutable because it is also borrowed as muta
 === Vorteile von Ownership & Borrowing
 
 * Keine `dangling pointer`
-* Kein `pointer aliasing`
+* Kein `pointer aliasing` für veränderbare Referenzen
 
 => Zwei typische Fehlerklassen die in C/C++ auftreten können sind in Rust nicht möglich.
 
