@@ -97,7 +97,7 @@ image::images/rust.png[width=150]
 
 [NOTE.speaker]
 --
-Performance: Keinen Grund wieso es langsamer als C sein sollte
+Performance: Keinen Grund wieso es langsamer als C sein sollte. Besp ripgrep
 
 Link zu Computer Language Benchmarks Game
 --
